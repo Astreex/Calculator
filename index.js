@@ -121,6 +121,10 @@ document.querySelector('.calculator').onclick = (event) => {
         if (firstNumber[firstNumber.length - 1] === '.') {
             firstNumber = firstNumber.substring(0, firstNumber.length - 1)
         }
+        if (firstNumber === '') {
+            firstNumber = '0'
+            out.textContent = firstNumber
+        }
         sign = key
         out.textContent = `${firstNumber} ${sign} ${secondNumber}`
         console.table(firstNumber, secondNumber, sign)
