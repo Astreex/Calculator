@@ -62,6 +62,7 @@ document.querySelector('.square').onclick = () => square()
 
 document.querySelector('.calculator').onclick = (event) => {
     if(!event.target.classList.contains('item')) return
+    if(event.target.classList.contains('output')) return
     if(event.target.classList.contains('reverse')) return
     if(event.target.classList.contains('clear')) return
     if(event.target.classList.contains('square')) return
