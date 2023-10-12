@@ -10,22 +10,29 @@ const out = document.querySelector('.output p')
 
 
 function square() {
-    firstNumber **= 2
-    out.textContent **= 2
+    if (secondNumber === '') {
+        firstNumber **= 2
+        out.textContent = firstNumber
+    } else if (secondNumber !== '' && sign !== '') {
+        secondNumber **= 2
+        out.textContent = `${firstNumber} ${sign} ${secondNumber}`
+    }
 }
 
 function clear() {
     firstNumber = ''
     secondNumber = ''
     sign = ''
-    out.textContent = 0
+    out.textContent = '0'
 }
 
 function rev() {
-    out.textContent *= -1
-    firstNumber *= -1
-    if (secondNumber !== '') {
-        secondNumber = parseInt(secondNumber) * -1
+    if (secondNumber === '') {
+        firstNumber *= -1
+        out.textContent = firstNumber
+    } else if (secondNumber !== '' && sign !== '') {
+        secondNumber *= -1
+        out.textContent = `${firstNumber} ${sign} ${secondNumber}`
     }
 }
 
