@@ -19,7 +19,7 @@ body {
     padding: 4px;
     border-radius: 5px;
     max-width: 360px;
-    margin: 100px auto 100px;
+    margin: 20px auto 0;
     box-shadow: 4px 4px 10px #050505,
                 -4px -4px 10px #050505,
                 4px -4px 10px #050505,
