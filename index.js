@@ -30,14 +30,22 @@ function rev() {
 }
 
 function back() {
-    firstNumber = out.textContent.substring(0, firstNumber.length - 1)
-    out.textContent = firstNumber
-    if (out.textContent === '') {
-        firstNumber = ''
-        secondNumber = ''
+    if (secondNumber === '' && sign === ''){
+        firstNumber = firstNumber.substring(0, firstNumber.length - 1)
+        out.textContent = firstNumber
+        if (out.textContent === '') {
+            firstNumber = ''
+            secondNumber = ''
+            sign = ''
+            out.textContent = 0
+        }
+    } else if (secondNumber !== '' && sign !== '') {
+       secondNumber = secondNumber.substring(0, secondNumber.length - 1)
+       out.textContent = `${firstNumber} ${sign} ${secondNumber}`
+    } else if (secondNumber === '' && sign !== ''){
         sign = ''
-        out.textContent = 0
-    }
+        out.textContent = firstNumber
+    } 
 }
 
 document.querySelector('.back').onclick = () => back()
