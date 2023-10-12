@@ -106,9 +106,9 @@ document.querySelector('.calculator').onclick = (event) => {
                 if (key === '.' && secondNumber.length < 1) {
                     secondNumber = '0.'
                     out.textContent = `${firstNumber} ${sign} ${secondNumber}`
-                } else if (key === '.' && secondNumber.length >= 2 && secondNumber.includes('.')) {
+                } else if (key === '.' && secondNumber.length > 1 && secondNumber.includes('.')) {
                     out.textContent = `${firstNumber} ${sign} ${secondNumber}`
-                } else if (key === '.' && secondNumber.length >= 2 && !secondNumber.includes('.')) {
+                } else if (key === '.' && secondNumber.length > 1 && !secondNumber.includes('.')) {
                     secondNumber = `${secondNumber}.`
                     out.textContent = `${firstNumber} ${sign} ${secondNumber}`
                 } else if (secondNumber.startsWith('0') && secondNumber.length > 0 && !secondNumber.includes('.')) {
