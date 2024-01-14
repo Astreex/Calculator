@@ -37,7 +37,7 @@ function rev() {
 }
 
 function back() {
-    if (secondNumber === '' && sign === ''){
+    if (secondNumber === '' && sign === '') {
         firstNumber = firstNumber.substring(0, firstNumber.length - 1)
         out.textContent = firstNumber
         if (out.textContent === '') {
@@ -47,12 +47,12 @@ function back() {
             out.textContent = 0
         }
     } else if (secondNumber !== '' && sign !== '') {
-       secondNumber = secondNumber.substring(0, secondNumber.length - 1)
-       out.textContent = `${firstNumber} ${sign} ${secondNumber}`
-    } else if (secondNumber === '' && sign !== ''){
+        secondNumber = secondNumber.substring(0, secondNumber.length - 1)
+        out.textContent = `${firstNumber} ${sign} ${secondNumber}`
+    } else if (secondNumber === '' && sign !== '') {
         sign = ''
         out.textContent = firstNumber
-    } 
+    }
 }
 
 document.querySelector('.back').onclick = () => back()
@@ -61,12 +61,12 @@ document.querySelector('.clear').onclick = () => clear()
 document.querySelector('.square').onclick = () => square()
 
 document.querySelector('.calculator').onclick = (event) => {
-    if(!event.target.classList.contains('item')) return
-    if(event.target.classList.contains('output')) return
-    if(event.target.classList.contains('reverse')) return
-    if(event.target.classList.contains('clear')) return
-    if(event.target.classList.contains('square')) return
-    if(event.target.classList.contains('back')) return
+    if (!event.target.classList.contains('item')) return
+    if (event.target.classList.contains('output')) return
+    if (event.target.classList.contains('reverse')) return
+    if (event.target.classList.contains('clear')) return
+    if (event.target.classList.contains('square')) return
+    if (event.target.classList.contains('back')) return
 
     const key = event.target.textContent
     out.textContent = ''
@@ -85,7 +85,7 @@ document.querySelector('.calculator').onclick = (event) => {
                 } else if (key === '.' && firstNumber.length >= 2 && !firstNumber.includes('.')) {
                     firstNumber = `${firstNumber}.`
                     out.textContent = firstNumber
-                } else if (firstNumber.startsWith('0') && firstNumber.length > 0 && !firstNumber.includes('.')) {
+                } else if (toString(firstNumber).startsWith('0') && firstNumber.length > 0 && !firstNumber.includes('.')) {
                     firstNumber = firstNumber.substring(1, firstNumber.length)
                     out.textContent = firstNumber
                 } else {
@@ -121,7 +121,10 @@ document.querySelector('.calculator').onclick = (event) => {
                 }
             }
         }
-        console.table(firstNumber, secondNumber, sign)
+        if (firstNumber.length > 1 && firstNumber[0] === '0' && firstNumber[1] !== '.') {
+            firstNumber = firstNumber.substring(1, firstNumber.length)
+            out.textContent = firstNumber
+        }
         return
     }
 
