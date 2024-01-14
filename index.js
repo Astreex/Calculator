@@ -112,7 +112,7 @@ document.querySelector('.calculator').onclick = (event) => {
                 } else if (key === '.' && secondNumber.length > 1 && !secondNumber.includes('.')) {
                     secondNumber = `${secondNumber}.`
                     out.textContent = `${firstNumber} ${sign} ${secondNumber}`
-                } else if (secondNumber.startsWith('0') && secondNumber.length > 0 && !secondNumber.includes('.')) {
+                } else if (toString(secondNumber).startsWith('0') && secondNumber.length > 0 && !secondNumber.includes('.')) {
                     secondNumber = secondNumber.substring(1, secondNumber.length)
                     out.textContent = `${firstNumber} ${sign} ${secondNumber}`
                 } else {
