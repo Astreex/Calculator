@@ -1,7 +1,6 @@
-let firstNumber = ''
-let secondNumber = ''
+let firstNumber = '0'
+let secondNumber = '0'
 let sign = ''
-let finish = false
 
 const digit = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '.'];
 const action = ['-', '+', '×', '÷'];
@@ -10,7 +9,7 @@ const out = document.querySelector('.output p')
 
 
 function square() {
-    if (secondNumber === '') {
+    if (secondNumber === '0') {
         firstNumber **= 2
         out.textContent = firstNumber
     } else if (secondNumber !== '' && sign !== '') {
@@ -23,11 +22,11 @@ function clear() {
     firstNumber = '0'
     secondNumber = '0'
     sign = ''
-    out.textContent = '0'
+    out.textContent = firstNumber
 }
 
 function rev() {
-    if (secondNumber === '') {
+    if (secondNumber == '0' && sign == '') {
         firstNumber *= -1
         out.textContent = `${firstNumber} ${sign}`
     } else if (secondNumber !== '' && sign !== '') {
@@ -37,21 +36,30 @@ function rev() {
 }
 
 function back() {
-    if (secondNumber === '' && sign === '') {
+    if ((secondNumber == '0' || secondNumber == '') && sign == '') {
+        firstNumber = `${firstNumber}`
         firstNumber = firstNumber.substring(0, firstNumber.length - 1)
         out.textContent = firstNumber
         if (out.textContent === '') {
-            firstNumber = ''
-            secondNumber = ''
+            firstNumber = '0'
+            secondNumber = '0'
             sign = ''
-            out.textContent = 0
+            out.textContent = '0'
         }
-    } else if (secondNumber !== '' && sign !== '') {
+    }
+    else if (secondNumber != '' && sign != '') {
+        secondNumber = `${secondNumber}`
         secondNumber = secondNumber.substring(0, secondNumber.length - 1)
+        if (secondNumber === '') { sign = '' }
         out.textContent = `${firstNumber} ${sign} ${secondNumber}`
-    } else if (secondNumber === '' && sign !== '') {
+    }
+    else if (secondNumber == '' && sign != '') {
         sign = ''
-        out.textContent = firstNumber
+        out.textContent = `${firstNumber} ${sign} ${secondNumber}`
+    }
+    else if (secondNumber == '0' && sign != '') {
+        secondNumber = ''
+        out.textContent = `${firstNumber}`
     }
 }
 
@@ -72,8 +80,8 @@ document.querySelector('.calculator').onclick = (event) => {
     out.textContent = ''
 
     if (digit.includes(key)) {
-        if (secondNumber === '' && sign === '') {
-            if (key === '0' && firstNumber.startsWith('0') && !firstNumber.includes('.')) {
+        if (secondNumber === '0' && sign === '') {
+            if (key === '0' && toString(firstNumber).startsWith('0') && !firstNumber.includes('.')) {
                 firstNumber = '0'
                 out.textContent = firstNumber
             } else {
@@ -93,21 +101,19 @@ document.querySelector('.calculator').onclick = (event) => {
                     out.textContent = firstNumber
                 }
             }
-        }
-        else if (firstNumber !== '' && secondNumber !== '' && finish) {
-            secondNumber = key
-            out.textContent = `${firstNumber} ${sign} ${secondNumber}`
-            finish = false
+            // }
+            // else if (firstNumber !== '' && secondNumber !== '' && finish) {
+            //     console.log(512231)
+            //     secondNumber = key
+            //     out.textContent = `${firstNumber} ${sign} ${secondNumber}`
+            //     finish = false
         }
         else {
             if (key === '0' && secondNumber.startsWith('0') && !secondNumber.includes('.')) {
-                secondNumber = '0'
+                firstNumber = '0'
                 out.textContent = `${firstNumber} ${sign} ${secondNumber}`
             } else {
-                if (key === '.' && secondNumber.length < 1) {
-                    secondNumber = '0.'
-                    out.textContent = `${firstNumber} ${sign} ${secondNumber}`
-                } else if (key === '.' && secondNumber.length > 1 && secondNumber.includes('.')) {
+                if (key === '.' && secondNumber.length > 1 && secondNumber.includes('.')) {
                     out.textContent = `${firstNumber} ${sign} ${secondNumber}`
                 } else if (key === '.' && secondNumber.length > 1 && !secondNumber.includes('.')) {
                     secondNumber = `${secondNumber}.`
@@ -115,8 +121,25 @@ document.querySelector('.calculator').onclick = (event) => {
                 } else if (toString(secondNumber).startsWith('0') && secondNumber.length > 0 && !secondNumber.includes('.')) {
                     secondNumber = secondNumber.substring(1, secondNumber.length)
                     out.textContent = `${firstNumber} ${sign} ${secondNumber}`
+                } else if (sign == '' && firstNumber != '' && secondNumber) {
+                    if (key === '.' && secondNumber == '') {
+                        firstNumber = `${firstNumber}.`
+                        secondNumber = ''
+                    }
+                    console.log(15123)
+                    firstNumber += key
+                    out.textContent = `${firstNumber} ${sign}`
                 } else {
-                    secondNumber += key
+                    if (key === '.' && secondNumber == '') {
+                        firstNumber = `${firstNumber}.`
+                        secondNumber = ''
+                        out.textContent = `${firstNumber}`
+                        // tut
+                    }
+                    if (key != '.') {
+                        secondNumber += key
+                    }
+                    console.log(15123)
                     out.textContent = `${firstNumber} ${sign} ${secondNumber}`
                 }
             }
@@ -127,6 +150,10 @@ document.querySelector('.calculator').onclick = (event) => {
         } else if (secondNumber.length > 1 && secondNumber[0] === '0' && secondNumber[1] !== '.') {
             secondNumber = secondNumber.substring(1, secondNumber.length)
             out.textContent = `${firstNumber} ${sign} ${secondNumber}`
+        }
+        if (firstNumber == '0' && key == '0' && sign == '') {
+            firstNumber = '0'
+            out.textContent = firstNumber
         }
         return
     }
@@ -168,7 +195,8 @@ document.querySelector('.calculator').onclick = (event) => {
                 firstNumber /= secondNumber
                 break
         }
-        finish = true
+        secondNumber = '0'
+        sign = ''
         out.textContent = firstNumber
         console.table(firstNumber, secondNumber, sign)
     }
