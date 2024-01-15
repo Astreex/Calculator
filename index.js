@@ -20,8 +20,8 @@ function square() {
 }
 
 function clear() {
-    firstNumber = ''
-    secondNumber = ''
+    firstNumber = '0'
+    secondNumber = '0'
     sign = ''
     out.textContent = '0'
 }
@@ -29,7 +29,7 @@ function clear() {
 function rev() {
     if (secondNumber === '') {
         firstNumber *= -1
-        out.textContent = firstNumber
+        out.textContent = `${firstNumber} ${sign}`
     } else if (secondNumber !== '' && sign !== '') {
         secondNumber *= -1
         out.textContent = `${firstNumber} ${sign} ${secondNumber}`
@@ -124,6 +124,9 @@ document.querySelector('.calculator').onclick = (event) => {
         if (firstNumber.length > 1 && firstNumber[0] === '0' && firstNumber[1] !== '.') {
             firstNumber = firstNumber.substring(1, firstNumber.length)
             out.textContent = firstNumber
+        } else if (secondNumber.length > 1 && secondNumber[0] === '0' && secondNumber[1] !== '.') {
+            secondNumber = secondNumber.substring(1, secondNumber.length)
+            out.textContent = `${firstNumber} ${sign} ${secondNumber}`
         }
         return
     }
@@ -157,7 +160,7 @@ document.querySelector('.calculator').onclick = (event) => {
             case '÷':
                 if (secondNumber === '0') {
                     out.textContent = `it's impossible bro`;
-                    firstNumber = ''
+                    firstNumber = '0'
                     secondNumber = ''
                     sign = ''
                     return
