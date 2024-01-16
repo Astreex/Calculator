@@ -4,10 +4,14 @@
     box-sizing: border-box;
 }
 
+::selection {
+    color: white;
+    background-color: rgb(175, 175, 175);
+}
+
 body {
     background-color: #222;
     color: #eee;
-    user-select: none;
     font-family: 'Roboto', sans-serif;
 }
 
@@ -27,6 +31,9 @@ body {
 }
 
 .item {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
     border-radius: 5px;
     background-color: #242424;
     padding: 20px;
@@ -43,7 +50,9 @@ body {
 }
 
 .output {
-    user-select: text;
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
     overflow: hidden;
     cursor: text;
     background-color: #111111;
