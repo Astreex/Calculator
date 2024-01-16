@@ -50,8 +50,12 @@ function back() {
     else if (secondNumber != '' && sign != '') {
         secondNumber = `${secondNumber}`
         secondNumber = secondNumber.substring(0, secondNumber.length - 1)
-        if (secondNumber === '') { sign = '' }
         out.textContent = `${firstNumber} ${sign} ${secondNumber}`
+        if (secondNumber === '') {
+            sign = ''
+            secondNumber = '0'
+            out.textContent = `${firstNumber} ${sign}`
+        }
     }
     else if (secondNumber == '' && sign != '') {
         sign = ''
