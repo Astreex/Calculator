@@ -32,8 +32,13 @@ function rev() {
         firstNumber *= -1
         out.textContent = `${firstNumber} ${sign}`
     } else if (secondNumber !== '' && sign !== '') {
+        if (sign == '+') {
+            sign = '-'
+            out.textContent = `${firstNumber} ${sign} ${secondNumber}`
+        } else {
         secondNumber *= -1
         out.textContent = `${firstNumber} ${sign} ${secondNumber}`
+        }
     }
 }
 
