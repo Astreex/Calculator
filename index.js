@@ -44,6 +44,9 @@ function rev() {
 
 function back() {
     if ((secondNumber == '0' || secondNumber == '') && sign == '') {
+        if (firstNumber[0] == '-' && firstNumber.length === 2) {
+            firstNumber = '0'
+        }
         firstNumber = `${firstNumber}`
         firstNumber = firstNumber.substring(0, firstNumber.length - 1)
         out.textContent = firstNumber
@@ -56,6 +59,10 @@ function back() {
     }
     else if (secondNumber != '' && sign != '') {
         secondNumber = `${secondNumber}`
+        if (secondNumber[0] == '-' && secondNumber.length === 2) {
+            secondNumber = '0'
+            sign = ''
+        }
         secondNumber = secondNumber.substring(0, secondNumber.length - 1)
         out.textContent = `${firstNumber} ${sign} ${secondNumber}`
         if (secondNumber === '') {
