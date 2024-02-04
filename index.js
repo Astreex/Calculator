@@ -181,7 +181,7 @@ document.addEventListener('keypress', (event) => {
                 if (secondNumber === '0') {
                     out.textContent = `it's impossible bro`;
                     firstNumber = '0'
-                    secondNumber = ''
+                    secondNumber = '0'
                     sign = ''
                     return
                 }
@@ -307,7 +307,7 @@ document.querySelector('.calculator').onclick = (event) => {
                 if (secondNumber === '0') {
                     out.textContent = `it's impossible bro`;
                     firstNumber = '0'
-                    secondNumber = ''
+                    secondNumber = '0'
                     sign = ''
                     return
                 }
