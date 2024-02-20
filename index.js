@@ -35,6 +35,9 @@ function rev() {
         if (sign == '+') {
             sign = '-'
             out.textContent = `${firstNumber} ${sign} ${secondNumber}`
+        } else if (sign == '-') {
+          sign = '+'
+          out.textContent = `${firstNumber} ${sign} ${secondNumber}`
         } else {
         secondNumber *= -1
         out.textContent = `${firstNumber} ${sign} ${secondNumber}`
